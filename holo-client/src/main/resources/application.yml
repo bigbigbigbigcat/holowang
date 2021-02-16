@@ -1,0 +1,4 @@
+server:
+  port: 8081
+#clientInfo:
+#  remark: 取到了resource里的yml
