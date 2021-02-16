@@ -9,13 +9,14 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.holo.springboot</groupId>
-    <artifactId>holo-client-rest</artifactId>
+    <artifactId>bootparent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>holo-client-rest</name>
+    <name>bootparent</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
+    <packaging>pom</packaging>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
