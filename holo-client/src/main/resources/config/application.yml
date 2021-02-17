@@ -1,4 +1,4 @@
 server:
-  port: 8082
+  port: 8088
 ##clientInfo:
 ##  remark: 取到了config里的yml

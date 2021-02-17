@@ -1,7 +1,13 @@
 package com.holo.springboot.holoclient.beans;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel
 public class Result<T> {
+    @ApiModelProperty(value = "状态码")
     private Integer code;
+    @ApiModelProperty(value = "信息")
     private String msg;
     private T data;
 
