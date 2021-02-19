@@ -1,5 +1,7 @@
 package com.holo.springboot.holoclient.beans;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -9,6 +11,7 @@ public class Result<T> {
     private Integer code;
     @ApiModelProperty(value = "信息")
     private String msg;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private T data;
 
     public Integer getCode() {
@@ -21,6 +24,11 @@ public class Result<T> {
 
     public String getMsg() {
         return msg;
+    }
+
+    public Result(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
     }
 
     public Result(Integer code, String msg, T data) {

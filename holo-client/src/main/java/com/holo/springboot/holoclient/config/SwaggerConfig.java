@@ -1,4 +1,4 @@
-package com.holo.springboot.holoclient;
+package com.holo.springboot.holoclient.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

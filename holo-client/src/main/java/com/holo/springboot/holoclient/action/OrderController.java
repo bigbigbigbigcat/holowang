@@ -9,11 +9,14 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Date;
 
 @RestController
 @Api(tags = "订单管理相关接口")
@@ -39,6 +42,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/addOrderInfo/{name}")
+    @CrossOrigin//支持跨域
     public Result addOrderInfo(@PathVariable String name) {
 //        restTemplate.getForObject()
 //        return this.restTemplate.getForObject("/{name}/details", Result.class, name);
@@ -49,8 +53,11 @@ public class OrderController {
     @RequestMapping(value = "/addOrderInfoForJson")
     @ResponseBody
     public Result addOrderInfoForJson(OrderInfo orderInfo) {
+        int i = 1/0;
+
 //        restTemplate.getForObject()
 //        return this.restTemplate.getForObject("/{name}/details", Result.class, name);
+        orderInfo.setDate(new Date());
         return new Result(200,"成功",orderInfo);
     }
 }
