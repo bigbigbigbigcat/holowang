@@ -1,5 +1,6 @@
 package com.holo.springboot.holoclient;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -10,6 +11,7 @@ import java.util.Properties;
 
 @SpringBootApplication
 @ServletComponentScan
+@MapperScan("com.holo.springboot.holoclient.mapper")
 public class HoloClientApplication {
 
     public static void main(String[] args) throws IOException {

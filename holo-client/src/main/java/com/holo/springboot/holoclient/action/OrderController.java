@@ -3,6 +3,10 @@ package com.holo.springboot.holoclient.action;
 import com.holo.springboot.holoclient.beans.ClientInfo;
 import com.holo.springboot.holoclient.beans.OrderInfo;
 import com.holo.springboot.holoclient.beans.Result;
+import com.holo.springboot.holoclient.mapper.DepartmentsMapper;
+import com.holo.springboot.holoclient.mapper.EmployeesMapper;
+import com.holo.springboot.holoclient.pojo.Departments;
+import com.holo.springboot.holoclient.pojo.Employees;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @Api(tags = "订单管理相关接口")
@@ -30,6 +35,13 @@ public class OrderController {
 
     @Autowired
     private ClientInfo clientInfo;
+
+    @Autowired
+    private EmployeesMapper employeesMapper;
+
+    @Autowired
+    private DepartmentsMapper departmentsMapper;
+
 
     @RequestMapping(value = "/qryOrderInfo/{name}")
     @ApiOperation("根据id查询用户的接口")
@@ -59,5 +71,30 @@ public class OrderController {
 //        return this.restTemplate.getForObject("/{name}/details", Result.class, name);
         orderInfo.setDate(new Date());
         return new Result(200,"成功",orderInfo);
+    }
+
+    @RequestMapping(value = "/employees")
+    @ResponseBody
+    public List<Employees> getEmployees(OrderInfo orderInfo) {
+
+//        restTemplate.getForObject()
+//        return this.restTemplate.getForObject("/{name}/details", Result.class, name);
+//        orderInfo.setDate(new Date());
+//        return new Result(200,"成功",orderInfo);
+        List<Employees> employees = employeesMapper.selectAll();
+        return employees;
+    }
+
+
+    @RequestMapping(value = "/departmentsMapper")
+    @ResponseBody
+    public List<Departments> getDepartments(OrderInfo orderInfo) {
+
+//        restTemplate.getForObject()
+//        return this.restTemplate.getForObject("/{name}/details", Result.class, name);
+//        orderInfo.setDate(new Date());
+//        return new Result(200,"成功",orderInfo);
+        List<Departments> departments = departmentsMapper.selectAll();
+        return departments;
     }
 }
