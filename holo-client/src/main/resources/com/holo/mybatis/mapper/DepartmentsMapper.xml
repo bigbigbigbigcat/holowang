@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.holo.springboot.holoclient.mapper.DepartmentsMapper">
+  <resultMap id="BaseResultMap" type="com.holo.springboot.holoclient.pojo.Departments">
+    <id column="dept_no" jdbcType="CHAR" property="deptNo" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from departments
+    where dept_no = #{deptNo,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.holo.springboot.holoclient.pojo.Departments">
+    insert into departments (dept_no, dept_name)
+    values (#{deptNo,jdbcType=CHAR}, #{deptName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.holo.springboot.holoclient.pojo.Departments">
+    update departments
+    set dept_name = #{deptName,jdbcType=VARCHAR}
+    where dept_no = #{deptNo,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select dept_no, dept_name
+    from departments
+    where dept_no = #{deptNo,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select dept_no, dept_name
+    from departments
+  </select>
+</mapper>
