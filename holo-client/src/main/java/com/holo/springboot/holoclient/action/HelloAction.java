@@ -2,9 +2,11 @@ package com.holo.springboot.holoclient.action;
 
 import com.holo.springboot.holoclient.Field;
 import com.holo.springboot.holoclient.beans.ClientInfo;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,17 +26,20 @@ public class HelloAction {
     @Autowired
     private ClientInfo clientInfo;
 
-    @RequestMapping(value = "/Holo/sayHi")
+    @RequestMapping(value = "/Holo/sayHi",method = RequestMethod.GET)
+    @ApiOperation(value = "说你好", notes = "这是一个测试入口")
     public String sayHi() {
         return "sayHi~";
     }
 
-    @RequestMapping(value = "/Holo/sayHello")
+    @RequestMapping(value = "/Holo/sayHello",method = RequestMethod.GET)
+    @ApiOperation(value = "sayHello", notes = "这是一个测试入口")
     public String sayHello() {
         return "sayHello~";
     }
 
-    @RequestMapping(value = "/Holo/sayMap")
+    @RequestMapping(value = "/Holo/sayMap",method = RequestMethod.GET)
+    @ApiOperation(value = "sayMap", notes = "这是一个测试入口")
     public Map<String, String> sayMap() {
         Map<String, String> stringMap = new HashMap<>();
 
@@ -44,7 +49,8 @@ public class HelloAction {
         return stringMap;
     }
 
-    @RequestMapping(value = "/Holo/sayList")
+    @RequestMapping(value = "/Holo/sayList",method = RequestMethod.GET)
+    @ApiOperation(value = "sayList", notes = "这是一个测试入口")
     public List<Map<String, String>> sayList() {
         List<Map<String, String>> returnList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
