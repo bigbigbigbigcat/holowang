@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -43,7 +44,7 @@ public class OrderController {
     private DepartmentsMapper departmentsMapper;
 
 
-    @RequestMapping(value = "/qryOrderInfo/{name}")
+    @RequestMapping(value = "/qryOrderInfo/{name}",method = RequestMethod.GET)
     @ApiOperation("根据id查询用户的接口")
     @ApiImplicitParam(name = "name", value = "用户名", defaultValue = " ", required = true)
     public Result qryOrderInfo(@PathVariable String name) {
@@ -53,7 +54,7 @@ public class OrderController {
         return new Result(200,"成功",clientInfo);
     }
 
-    @RequestMapping(value = "/addOrderInfo/{name}")
+    @RequestMapping(value = "/addOrderInfo/{name}",method = RequestMethod.POST)
     @CrossOrigin//支持跨域
     public Result addOrderInfo(@PathVariable String name) {
 //        restTemplate.getForObject()
@@ -62,7 +63,7 @@ public class OrderController {
         return new Result(200,"成功",clientInfo);
     }
 
-    @RequestMapping(value = "/addOrderInfoForJson")
+    @RequestMapping(value = "/addOrderInfoForJson",method = RequestMethod.POST)
     @ResponseBody
     public Result addOrderInfoForJson(OrderInfo orderInfo) {
         int i = 1/0;
@@ -73,7 +74,7 @@ public class OrderController {
         return new Result(200,"成功",orderInfo);
     }
 
-    @RequestMapping(value = "/employees")
+    @RequestMapping(value = "/employees",method = RequestMethod.GET)
     @ResponseBody
     public List<Employees> getEmployees(OrderInfo orderInfo) {
 
@@ -86,7 +87,8 @@ public class OrderController {
     }
 
 
-    @RequestMapping(value = "/departmentsMapper")
+    @RequestMapping(value = "/departmentsMapper",method = RequestMethod.GET)
+    @ApiOperation("部门信息查询")
     @ResponseBody
     public List<Departments> getDepartments(OrderInfo orderInfo) {
 

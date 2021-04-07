@@ -22,8 +22,10 @@ public class HoloClientApplication {
         //自己指定配置文件
         InputStream myConfigAsStream = HoloClientApplication.class.getClassLoader().getResourceAsStream("myConfig.properties");
         InputStream redisAsStream = HoloClientApplication.class.getClassLoader().getResourceAsStream("redis.properties");
+//        InputStream druidAsStream = HoloClientApplication.class.getClassLoader().getResourceAsStream("application.yml");
         properties.load(myConfigAsStream);
         properties.load(redisAsStream);
+//        properties.load(druidAsStream);
         springApplication.setDefaultProperties(properties);
         springApplication.run(args);
     }

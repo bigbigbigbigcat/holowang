@@ -6,7 +6,8 @@ spring:
   datasource:
       username: root
       password: baichi_mysql
-      url: jdbc:mysql://124.70.208.232:3306/employees?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&
+      #恒生云环境：url: jdbc:mysql://124.70.208.232:3306/employees?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&
+      url: jdbc:mysql://10.23.7.1842:3306/employees?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&
       driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.alibaba.druid.pool.DruidDataSource
 
@@ -38,4 +39,8 @@ spring:
               login-username: admin
               login-password: baichi_druid
 mybatis:
+    ##当mybatis的xml文件和mapper接口不在相同包下时，需要用mapperLocations属性指定xml文件的路径。*是个通配符，代表所有的文件，**代表所有目录下
     mapper-locations: classpath:com/holo/mybatis/mapper/*.xml
+    configuration:
+      ##数据库字段，下划线命名转驼峰命名
+      map-underscore-to-camel-case: true

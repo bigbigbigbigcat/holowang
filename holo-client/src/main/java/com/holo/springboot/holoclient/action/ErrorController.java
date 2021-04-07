@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
@@ -75,7 +76,9 @@ public class ErrorController extends AbstractErrorController {
         Map<String, Object> body = getErrorAttributes(request, getErrorAttributeOptions());
         String code = body.get("status").toString();
         String message = body.get("message").toString();
-        logger.error(body.get("trace").toString());
+        if (!ObjectUtils.isEmpty(body.get("trace"))){
+            logger.error(body.get("trace").toString());
+        }
         return new Result(Integer.parseInt(code),message);
 
 //        return new Result(status.value(),status.getReasonPhrase());
