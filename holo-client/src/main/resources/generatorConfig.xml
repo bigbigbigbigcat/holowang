@@ -16,7 +16,7 @@
     -->
     <context id="simple" targetRuntime="MyBatis3Simple">
 
-        
+
         <commentGenerator>
             <!--设置是否生成注释  true 不生成  注意： 如果不生成注释，下次生成代码就不会进行合并-->
             <property name="suppressAllComments" value="true"/>
@@ -46,7 +46,8 @@
                 2.使用接口绑定的方式生成（要配置sqlMapGenerator）
             targetPackage 生成到哪个包下
             targetProject 生成到当前文件的哪个相对路径下-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.holo.springboot.holoclient.mapper" targetProject="src/main/java"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.holo.springboot.holoclient.mapper"
+                             targetProject="src/main/java"/>
 
 
         <!--配置哪些表需要进行代码生成
@@ -54,11 +55,11 @@
         domainObjectName pojo类名
         mapperName 对应mapper接口的类名 和 mapper xml文件名
         -->
-        <table tableName="employees" domainObjectName="Employees" mapperName="EmployeesMapper" />
-        <table tableName="departments" domainObjectName="Departments" mapperName="DepartmentsMapper" />
-        <table tableName="dept_emp" domainObjectName="DeptEmp" mapperName="DeptEmpMapper" />
-        <table tableName="dept_manager" domainObjectName="DeptManager" mapperName="DeptManagerMapper" />
-        <table tableName="titles" domainObjectName="Titles" mapperName="TitlesMapper" />
-        <table tableName="salaries" domainObjectName="Salaries" mapperName="SalariesMapper" />
+        <table tableName="employees" domainObjectName="Employees" mapperName="EmployeesMapper"/>
+        <table tableName="departments" domainObjectName="Departments" mapperName="DepartmentsMapper"/>
+        <table tableName="dept_emp" domainObjectName="DeptEmp" mapperName="DeptEmpMapper"/>
+        <table tableName="dept_manager" domainObjectName="DeptManager" mapperName="DeptManagerMapper"/>
+        <table tableName="titles" domainObjectName="Titles" mapperName="TitlesMapper"/>
+        <table tableName="salaries" domainObjectName="Salaries" mapperName="SalariesMapper"/>
     </context>
 </generatorConfiguration>

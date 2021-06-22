@@ -20,7 +20,7 @@ public class OrderInfo {
     private String order_name;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String order_type;
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss",locale = "zh")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", locale = "zh")
     private Date date;
 
     public Date getDate() {

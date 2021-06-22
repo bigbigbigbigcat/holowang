@@ -4,43 +4,43 @@ clientInfo:
   remark: 取到了resource里的yml
 spring:
   datasource:
-      username: root
-      password: baichi_mysql
-      #恒生云环境：url: jdbc:mysql://124.70.208.232:3306/employees?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&
-      url: jdbc:mysql://10.23.7.184:3306/employees?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: baichi_mysql
+    #恒生云环境：url: jdbc:mysql://124.70.208.232:3306/employees?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&
+    url: jdbc:mysql://10.23.7.184:3306/employees?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
 
     #   数据源其他配置
-      initialSize: 5
-      minIdle: 5
-      maxActive: 20
-      maxWait: 60000
-      timeBetweenEvictionRunsMillis: 60000
-      minEvictableIdleTimeMillis: 300000
-      validationQuery: SELECT 1 FROM DUAL
-      testWhileIdle: true
-      testOnBorrow: false
-      testOnReturn: false
-      poolPreparedStatements: true
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
     #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
-      filters: stat,wall
-      maxPoolPreparedStatementPerConnectionSize: 20
-      useGlobalDataSourceStat: true
-      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    filters: stat,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
     #初始化时运行sql脚本
-      #schema: classpath:sql/schema.sql
-      #initialization-mode: always
+    #schema: classpath:sql/schema.sql
+    #initialization-mode: always
 
-      #启用DruidStatViewServletConfiguration（druid监控台） 配置类的ConditionalOnProperty 条件spring.datasource.druid.stat-view-servlet=true时生效。
-      druid:
-          stat-view-servlet:
-              enabled: true
-              login-username: admin
-              login-password: baichi_druid
+    #启用DruidStatViewServletConfiguration（druid监控台） 配置类的ConditionalOnProperty 条件spring.datasource.druid.stat-view-servlet=true时生效。
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: baichi_druid
 mybatis:
-    ##当mybatis的xml文件和mapper接口不在相同包下时，需要用mapperLocations属性指定xml文件的路径。*是个通配符，代表所有的文件，**代表所有目录下
-    mapper-locations: classpath:com/holo/mybatis/mapper/*.xml
-    configuration:
-      ##数据库字段，下划线命名转驼峰命名
-      map-underscore-to-camel-case: true
+  ##当mybatis的xml文件和mapper接口不在相同包下时，需要用mapperLocations属性指定xml文件的路径。*是个通配符，代表所有的文件，**代表所有目录下
+  mapper-locations: classpath:com/holo/mybatis/mapper/*.xml
+  configuration:
+    ##数据库字段，下划线命名转驼峰命名
+    map-underscore-to-camel-case: true

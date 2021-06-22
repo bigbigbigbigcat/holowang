@@ -1,7 +1,9 @@
 package com.holo.springboot.holoclient.mapper;
 
 import com.holo.springboot.holoclient.pojo.DeptManager;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface DeptManagerMapper {

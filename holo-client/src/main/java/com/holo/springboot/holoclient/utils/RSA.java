@@ -40,12 +40,12 @@ public class RSA {
     public static final String SIGNATURE_ALGORITHM2 = "shihaiming@#!RSA";
 
 
-    public static String OUT_PUBLICKEY="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDOhCAawnbn5qQDYOaWghQDAnZH" +
+    public static String OUT_PUBLICKEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDOhCAawnbn5qQDYOaWghQDAnZH" +
             "yIirN/v61DvNE2jVeUYo6zyNSySl0C9yEa+IhVgRD49pNttGenAbGO3RaNDJw1LX" +
             "lsvxfr49gtTHcdHq9+t/quz3QiAAjbhQulZCYQ+RcR6QpuW0wyXoMMi9aD4Tjyl/" +
             "iooBimoY0i11qW4rUQIDAQAB";
 
-    public static String OUT_PRIVATEKEY="MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAM6EIBrCdufmpANg" +
+    public static String OUT_PRIVATEKEY = "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAM6EIBrCdufmpANg" +
             "5paCFAMCdkfIiKs3+/rUO80TaNV5RijrPI1LJKXQL3IRr4iFWBEPj2k220Z6cBsY" +
             "7dFo0MnDUteWy/F+vj2C1Mdx0er363+q7PdCIACNuFC6VkJhD5FxHpCm5bTDJegw" +
             "yL1oPhOPKX+KigGKahjSLXWpbitRAgMBAAECgYAwzTpE+JVewbsabUiwYnbWKzvG" +
@@ -62,6 +62,7 @@ public class RSA {
 
     /**
      * 生成密钥对
+     *
      * @param keySize
      * @return
      */
@@ -91,6 +92,7 @@ public class RSA {
 
     /**
      * 获取公钥
+     *
      * @param publicKey 密钥字符串（经过base64编码）
      * @throws Exception
      */
@@ -98,12 +100,13 @@ public class RSA {
         // 通过X509编码的Key指令获得公钥对象
         KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
         X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(Base64.decodeBase64(publicKey));
-        RSAPublicKey key = (RSAPublicKey)keyFactory.generatePublic(x509KeySpec);
+        RSAPublicKey key = (RSAPublicKey) keyFactory.generatePublic(x509KeySpec);
         return key;
     }
 
     /**
      * 获取私钥
+     *
      * @param privateKey 密钥字符串（经过base64编码）
      * @throws Exception
      */
@@ -111,12 +114,13 @@ public class RSA {
         // 通过PKCS#8编码的Key指令获得私钥对象
         KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
         PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(privateKey));
-        RSAPrivateKey key = (RSAPrivateKey)keyFactory.generatePrivate(pkcs8KeySpec);
+        RSAPrivateKey key = (RSAPrivateKey) keyFactory.generatePrivate(pkcs8KeySpec);
         return key;
     }
 
     /**
      * 使用公钥进行加密
+     *
      * @param data
      * @param publicKey
      * @return
@@ -125,7 +129,7 @@ public class RSA {
         try {
             Cipher cipher = Cipher.getInstance(RSA_ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-            data=Base64.encodeBase64String(data.getBytes("UTF-8"));
+            data = Base64.encodeBase64String(data.getBytes("UTF-8"));
 //			data=Base64.encodeBase64String(data.getBytes(""));
             return Base64.encodeBase64String(rsaSplitCodec(cipher, Cipher.ENCRYPT_MODE, data.getBytes(CHARSET), publicKey.getModulus().bitLength()));
         } catch (Exception e) {
@@ -135,6 +139,7 @@ public class RSA {
 
     /**
      * 使用私钥进行解密
+     *
      * @param data
      * @param privateKey
      * @return
@@ -153,6 +158,7 @@ public class RSA {
 
     /**
      * 使用私钥进行加密
+     *
      * @param data
      * @param privateKey
      * @return
@@ -170,6 +176,7 @@ public class RSA {
 
     /**
      * 使用公钥进行解密
+     *
      * @param data
      * @param publicKey
      * @return
@@ -217,6 +224,7 @@ public class RSA {
 
     /**
      * 使用私钥进行签名
+     *
      * @param
      * @param plain_text
      * @return
@@ -243,6 +251,7 @@ public class RSA {
 
     /**
      * byte[] 转16进制字符串
+     *
      * @param src
      * @return
      */

@@ -13,7 +13,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * 访问地址
  * http://127.0.0.1:8088/SpringBoot/swagger-ui.html
- *
  */
 
 @Configuration
@@ -30,7 +29,7 @@ public class SwaggerConfig {
                         .title("SpringBoot整合Swagger")
                         .description("SpringBoot整合Swagger，详细信息......")
                         .version("1.0")
-                        .contact(new Contact("王骥威","www.baidu.com","wangjw11323@hundsun.com"))
+                        .contact(new Contact("王骥威", "www.baidu.com", "wangjw11323@hundsun.com"))
                         .build());
     }
 }

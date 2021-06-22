@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.holo.springboot.holoclient.mapper.DeptManagerMapper">
-  <resultMap id="BaseResultMap" type="com.holo.springboot.holoclient.pojo.DeptManager">
-    <id column="emp_no" jdbcType="INTEGER" property="empNo" />
-    <id column="dept_no" jdbcType="CHAR" property="deptNo" />
-    <result column="from_date" jdbcType="DATE" property="fromDate" />
-    <result column="to_date" jdbcType="DATE" property="toDate" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="map">
-    delete from dept_manager
-    where emp_no = #{empNo,jdbcType=INTEGER}
-      and dept_no = #{deptNo,jdbcType=CHAR}
-  </delete>
-  <insert id="insert" parameterType="com.holo.springboot.holoclient.pojo.DeptManager">
-    insert into dept_manager (emp_no, dept_no, from_date, 
-      to_date)
-    values (#{empNo,jdbcType=INTEGER}, #{deptNo,jdbcType=CHAR}, #{fromDate,jdbcType=DATE}, 
-      #{toDate,jdbcType=DATE})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.holo.springboot.holoclient.pojo.DeptManager">
-    update dept_manager
-    set from_date = #{fromDate,jdbcType=DATE},
-      to_date = #{toDate,jdbcType=DATE}
-    where emp_no = #{empNo,jdbcType=INTEGER}
-      and dept_no = #{deptNo,jdbcType=CHAR}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-    select emp_no, dept_no, from_date, to_date
-    from dept_manager
-    where emp_no = #{empNo,jdbcType=INTEGER}
-      and dept_no = #{deptNo,jdbcType=CHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select emp_no, dept_no, from_date, to_date
-    from dept_manager
-  </select>
+    <resultMap id="BaseResultMap" type="com.holo.springboot.holoclient.pojo.DeptManager">
+        <id column="emp_no" jdbcType="INTEGER" property="empNo"/>
+        <id column="dept_no" jdbcType="CHAR" property="deptNo"/>
+        <result column="from_date" jdbcType="DATE" property="fromDate"/>
+        <result column="to_date" jdbcType="DATE" property="toDate"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete from dept_manager
+        where emp_no = #{empNo,jdbcType=INTEGER}
+        and dept_no = #{deptNo,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="com.holo.springboot.holoclient.pojo.DeptManager">
+        insert into dept_manager (emp_no, dept_no, from_date,
+        to_date)
+        values (#{empNo,jdbcType=INTEGER}, #{deptNo,jdbcType=CHAR}, #{fromDate,jdbcType=DATE},
+        #{toDate,jdbcType=DATE})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.holo.springboot.holoclient.pojo.DeptManager">
+        update dept_manager
+        set from_date = #{fromDate,jdbcType=DATE},
+        to_date = #{toDate,jdbcType=DATE}
+        where emp_no = #{empNo,jdbcType=INTEGER}
+        and dept_no = #{deptNo,jdbcType=CHAR}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select emp_no, dept_no, from_date, to_date
+        from dept_manager
+        where emp_no = #{empNo,jdbcType=INTEGER}
+        and dept_no = #{deptNo,jdbcType=CHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select emp_no, dept_no, from_date, to_date
+        from dept_manager
+    </select>
 </mapper>

@@ -44,37 +44,37 @@ public class OrderController {
     private DepartmentsMapper departmentsMapper;
 
 
-    @RequestMapping(value = "/qryOrderInfo/{name}",method = RequestMethod.GET)
+    @RequestMapping(value = "/qryOrderInfo/{name}", method = RequestMethod.GET)
     @ApiOperation("根据id查询用户的接口")
     @ApiImplicitParam(name = "name", value = "用户名", defaultValue = " ", required = true)
     public Result qryOrderInfo(@PathVariable String name) {
 //        restTemplate.getForObject()
 //        return this.restTemplate.getForObject("/{name}/details", Result.class, name);
         clientInfo.setClient_name(name);
-        return new Result(200,"成功",clientInfo);
+        return new Result(200, "成功", clientInfo);
     }
 
-    @RequestMapping(value = "/addOrderInfo/{name}",method = RequestMethod.POST)
+    @RequestMapping(value = "/addOrderInfo/{name}", method = RequestMethod.POST)
     @CrossOrigin//支持跨域
     public Result addOrderInfo(@PathVariable String name) {
 //        restTemplate.getForObject()
 //        return this.restTemplate.getForObject("/{name}/details", Result.class, name);
         clientInfo.setClient_name(name);
-        return new Result(200,"成功",clientInfo);
+        return new Result(200, "成功", clientInfo);
     }
 
-    @RequestMapping(value = "/addOrderInfoForJson",method = RequestMethod.POST)
+    @RequestMapping(value = "/addOrderInfoForJson", method = RequestMethod.POST)
     @ResponseBody
     public Result addOrderInfoForJson(OrderInfo orderInfo) {
-        int i = 1/0;
+        int i = 1 / 0;
 
 //        restTemplate.getForObject()
 //        return this.restTemplate.getForObject("/{name}/details", Result.class, name);
         orderInfo.setDate(new Date());
-        return new Result(200,"成功",orderInfo);
+        return new Result(200, "成功", orderInfo);
     }
 
-    @RequestMapping(value = "/employees",method = RequestMethod.GET)
+    @RequestMapping(value = "/employees", method = RequestMethod.GET)
     @ResponseBody
     public List<Employees> getEmployees(OrderInfo orderInfo) {
 
@@ -87,7 +87,7 @@ public class OrderController {
     }
 
 
-    @RequestMapping(value = "/departmentsMapper",method = RequestMethod.GET)
+    @RequestMapping(value = "/departmentsMapper", method = RequestMethod.GET)
     @ApiOperation("部门信息查询")
     @ResponseBody
     public List<Departments> getDepartments(OrderInfo orderInfo) {

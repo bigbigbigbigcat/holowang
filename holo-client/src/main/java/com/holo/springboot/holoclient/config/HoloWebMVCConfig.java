@@ -18,13 +18,14 @@ public class HoloWebMVCConfig implements WebMvcConfigurer {
 
     /**
      * 设置全局跨域
+     *
      * @param registry
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         //前后端分离的场景，就可以通过这种方式进行全局跨域处理，或者通过@CrossOrigin来指定某个controller方法为跨域
         registry.addMapping("/qryOrderInfo/**")//表示哪些接口是允许跨域
-        .allowedOrigins("http://www.baidu.com")//代表允许的跨域来源
-        .allowedMethods("POST","GET");
+                .allowedOrigins("http://www.baidu.com")//代表允许的跨域来源
+                .allowedMethods("POST", "GET");
     }
 }

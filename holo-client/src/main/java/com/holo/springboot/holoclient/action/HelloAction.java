@@ -26,19 +26,19 @@ public class HelloAction {
     @Autowired
     private ClientInfo clientInfo;
 
-    @RequestMapping(value = "/Holo/sayHi",method = RequestMethod.GET)
+    @RequestMapping(value = "/Holo/sayHi", method = RequestMethod.GET)
     @ApiOperation(value = "说你好", notes = "这是一个测试入口")
     public String sayHi() {
         return "sayHi~";
     }
 
-    @RequestMapping(value = "/Holo/sayHello",method = RequestMethod.GET)
+    @RequestMapping(value = "/Holo/sayHello", method = RequestMethod.GET)
     @ApiOperation(value = "sayHello", notes = "这是一个测试入口")
     public String sayHello() {
         return "sayHello~";
     }
 
-    @RequestMapping(value = "/Holo/sayMap",method = RequestMethod.GET)
+    @RequestMapping(value = "/Holo/sayMap", method = RequestMethod.GET)
     @ApiOperation(value = "sayMap", notes = "这是一个测试入口")
     public Map<String, String> sayMap() {
         Map<String, String> stringMap = new HashMap<>();
@@ -49,7 +49,7 @@ public class HelloAction {
         return stringMap;
     }
 
-    @RequestMapping(value = "/Holo/sayList",method = RequestMethod.GET)
+    @RequestMapping(value = "/Holo/sayList", method = RequestMethod.GET)
     @ApiOperation(value = "sayList", notes = "这是一个测试入口")
     public List<Map<String, String>> sayList() {
         List<Map<String, String>> returnList = new ArrayList<>();

@@ -17,10 +17,11 @@ public class TimeInterceptor implements HandlerInterceptor {
 
     /**
      * 实际方法执行前
+     *
      * @param request
      * @param response
      * @param handler
-     * @return  false则代表拦截，不再继续执行controller中的方法。返回true则代表不拦截。
+     * @return false则代表拦截，不再继续执行controller中的方法。返回true则代表不拦截。
      * @throws Exception
      */
     @Override
@@ -31,6 +32,7 @@ public class TimeInterceptor implements HandlerInterceptor {
 
     /**
      * 实际方法执行后
+     *
      * @param request
      * @param response
      * @param handler
@@ -43,7 +45,7 @@ public class TimeInterceptor implements HandlerInterceptor {
         //计算两个时间差
         Duration between = Duration.between(beginTime, endNow);
         //获得相关的毫秒数
-        logger.info(String.format("当前请求：%s，执行时间：%s",request.getRequestURL(),between.toMillis()));
+        logger.info(String.format("当前请求：%s，执行时间：%s", request.getRequestURL(), between.toMillis()));
 
     }
 

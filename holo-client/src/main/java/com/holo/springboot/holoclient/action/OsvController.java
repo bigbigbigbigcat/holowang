@@ -36,19 +36,19 @@ public class OsvController {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    @RequestMapping(value = "/v2/getOSVConfig.json",method = RequestMethod.POST)
+    @RequestMapping(value = "/v2/getOSVConfig.json", method = RequestMethod.POST)
     @ResponseBody
-    public String getOSVConfig(){
+    public String getOSVConfig() {
         OSVConfig osvObject = restTemplate.getForObject("http://10.23.6.54:81/obm-osv/v2/getOSVConfig.json", OSVConfig.class);
         System.out.println(osvObject.toString());
         return osvObject.toString();
     }
 
-    @RequestMapping(value = "/v2/getVideoStatementFile.json",method = RequestMethod.POST)
+    @RequestMapping(value = "/v2/getVideoStatementFile.json", method = RequestMethod.POST)
     public String getVideoStatementFile(HttpServletRequest request, String state_content) throws IOException {
 //        Map<String,String> paramMap = new HashMap<String, String>();
 //        paramMap.put("state_content",state_content);
-        ResponseEntity<Resource> forEntity = restTemplate.postForEntity("http://10.23.6.54:81/obm-osv/v2/getVideoStatementFile.json?state_content={1}",request, Resource.class,state_content);
+        ResponseEntity<Resource> forEntity = restTemplate.postForEntity("http://10.23.6.54:81/obm-osv/v2/getVideoStatementFile.json?state_content={1}", request, Resource.class, state_content);
         if (forEntity.getStatusCode().equals(HttpStatus.OK)) {
             // ...
             try {
@@ -81,43 +81,43 @@ public class OsvController {
     }
 
 
-    @RequestMapping(value = "/v2/getVideoStatement.json",method = RequestMethod.POST)
-    public String getVideoStatement(HttpServletRequest request, String acpt_id,String business_kind) throws InvalidKeySpecException, NoSuchAlgorithmException {
+    @RequestMapping(value = "/v2/getVideoStatement.json", method = RequestMethod.POST)
+    public String getVideoStatement(HttpServletRequest request, String acpt_id, String business_kind) throws InvalidKeySpecException, NoSuchAlgorithmException {
 //        Map<String,String> paramMap = new HashMap<String, String>();
 //        paramMap.put("state_content",state_content);
         // 使用公钥进行加密
         String acptIdEncrypt = RSA.publicEncrypt(acpt_id, RSA.getPublicKey(RSA.OUT_PUBLICKEY));
         String business_kindEncrypt = RSA.publicEncrypt(business_kind, RSA.getPublicKey(RSA.OUT_PUBLICKEY));
 
-        Object forEntity = restTemplate.getForObject("http://10.23.6.54:81/obm-osv/v2/getVideoStatement.json?acpt_id={1}&business_kind={2}", Object.class, Encoder.encodeURL(acptIdEncrypt),Encoder.encodeURL(business_kindEncrypt));
+        Object forEntity = restTemplate.getForObject("http://10.23.6.54:81/obm-osv/v2/getVideoStatement.json?acpt_id={1}&business_kind={2}", Object.class, Encoder.encodeURL(acptIdEncrypt), Encoder.encodeURL(business_kindEncrypt));
 
         return forEntity.toString();
 
     }
 
-    @RequestMapping(value = "/v2/protoVideoQry.json",method = RequestMethod.POST)
+    @RequestMapping(value = "/v2/protoVideoQry.json", method = RequestMethod.POST)
     @ResponseBody
     public String protoVideoQry(ProtoVideoQryForm pvq) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        Map<String,String> paramMap = new HashMap<String, String>();
+        Map<String, String> paramMap = new HashMap<String, String>();
         String acptIdEncrypt = RSA.publicEncrypt(pvq.getAcpt_id(), RSA.getPublicKey(RSA.OUT_PUBLICKEY));
         String business_kindEncrypt = RSA.publicEncrypt(pvq.getBusiness_kind(), RSA.getPublicKey(RSA.OUT_PUBLICKEY));
 
 //        paramMap.put("business_kind","0010");
 //        paramMap.put("acpt_id","2021033000000154");
-        paramMap.put("business_kind",Encoder.encodeURL(business_kindEncrypt));
-        paramMap.put("acpt_id",Encoder.encodeURL(acptIdEncrypt));
+        paramMap.put("business_kind", Encoder.encodeURL(business_kindEncrypt));
+        paramMap.put("acpt_id", Encoder.encodeURL(acptIdEncrypt));
 
-        ResponseEntity<String> responseEntity =  restTemplate.getForEntity("http://10.23.6.54:81/obm-osv/v2/protoVideoQry.json?business_kind={business_kind}&acpt_id={acpt_id}", String.class,paramMap);
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://10.23.6.54:81/obm-osv/v2/protoVideoQry.json?business_kind={business_kind}&acpt_id={acpt_id}", String.class, paramMap);
 //        String osvObject = restTemplate.getForObject("http://10.23.6.54:81/obm-osv/v2/protoVideoQry.json", String.class);
 //        System.out.println(osvObject);
         return responseEntity.getBody();
     }
 
 
-    @RequestMapping(value = "/v2/getSoundRecognize.json",method = RequestMethod.POST)
+    @RequestMapping(value = "/v2/getSoundRecognize.json", method = RequestMethod.POST)
     @ResponseBody
     public String getSoundRecognize(HttpServletRequest request, String file_data) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        Map<String,String> paramMap = new HashMap<String, String>();
+        Map<String, String> paramMap = new HashMap<String, String>();
         String file_dataEncrypt = RSA.publicEncrypt(testInputStreamBase64().toString(), RSA.getPublicKey(RSA.OUT_PUBLICKEY));
 
 //        paramMap.put("business_kind","0010");
@@ -142,32 +142,31 @@ public class OsvController {
 
     /**
      * 本地测试时使用。
+     *
      * @return
      */
-    public static StringBuffer testInputStreamBase64(){
+    public static StringBuffer testInputStreamBase64() {
         InputStream in = null;
-        try{
+        try {
             StringBuffer sb = new StringBuffer();
             in = new BufferedInputStream(new FileInputStream("D:\\20200325_st_16k.txt"));
-            byte [] buf = new byte[1024];
+            byte[] buf = new byte[1024];
             int bytesRead = in.read(buf);
-            while(bytesRead != -1)
-            {
-                for(int i=0;i<bytesRead;i++) {
-                    sb.append((char)buf[i]);
+            while (bytesRead != -1) {
+                for (int i = 0; i < bytesRead; i++) {
+                    sb.append((char) buf[i]);
                 }
                 bytesRead = in.read(buf);
             }
             return sb;
-        }catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
-        }finally{
-            try{
-                if(in != null){
+        } finally {
+            try {
+                if (in != null) {
                     in.close();
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

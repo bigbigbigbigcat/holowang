@@ -38,29 +38,20 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * 导出Excel工具类
  *
  * @author 大脑补丁
- *
  */
 public class ExportExcelUtil<T> {
 
     /**
      * 导出多Sheet的Excel到HttpServletResponse流中
      *
-     * @param fileName
-     *            另存为文件名
-     * @param sheetNames
-     *            工作簿中的多张Sheet工作表的名称列表
-     * @param titleName
-     *            表格的标题名称（没有标题，则传null）
-     * @param headers
-     *            表头列表
-     * @param dataLists
-     *            要导出的数据源
-     * @param path
-     *            Http响应
-     * @param pattern
-     *            时间类型数据的格式,默认UTC格式
-     * @param isExportNullField
-     *            空字段是否导出（true：导出，false:不导出）
+     * @param fileName          另存为文件名
+     * @param sheetNames        工作簿中的多张Sheet工作表的名称列表
+     * @param titleName         表格的标题名称（没有标题，则传null）
+     * @param headers           表头列表
+     * @param dataLists         要导出的数据源
+     * @param path              Http响应
+     * @param pattern           时间类型数据的格式,默认UTC格式
+     * @param isExportNullField 空字段是否导出（true：导出，false:不导出）
      * @see 导出Excel格式：表头内容居中，字体略大于正文，颜色深灰色。正文文本类型对齐方式居左，数字类型对齐方式居右。仅有数据* 的单元格，有边框环绕，实体类的属性顺序即为表头顺序
      */
     public static <T> void exportExcel(String fileName, List<String> sheetNames, String titleName, List<String> headers,
@@ -71,7 +62,7 @@ public class ExportExcelUtil<T> {
         FileOutputStream out = null;
         try {
             fileName = String.valueOf(URLEncoder.encode(replaceSpecStr(fileName) + ".xlsx", "UTF-8"));
-            fileName = path+fileName;
+            fileName = path + fileName;
             File file = new File(fileName);
             if (!file.exists()) {
                 System.out.println(String.format("保存语音文件到tomcat,pcmUrl:%s,文件不存在，开始创建", fileName));
@@ -112,22 +103,14 @@ public class ExportExcelUtil<T> {
     /**
      * 导出多Sheet动态列的Excel到HttpServletResponse流中
      *
-     * @param fileName
-     *            另存为文件名
-     * @param sheetName
-     *            工作簿中的多张Sheet工作表的名称列表
-     * @param titleName
-     *            表格的标题名称（没有标题，则传null）
-     * @param headers
-     *            表头列表
-     * @param dataList
-     *            要导出的数据源
-     * @param HttpServletResponse
-     *            Http响应
-     * @param pattern
-     *            时间类型数据的格式,默认UTC格式
-     * @param isExportNullField
-     *            空字段是否导出（true：导出，false:不导出）
+     * @param fileName            另存为文件名
+     * @param sheetName           工作簿中的多张Sheet工作表的名称列表
+     * @param titleName           表格的标题名称（没有标题，则传null）
+     * @param headers             表头列表
+     * @param dataList            要导出的数据源
+     * @param HttpServletResponse Http响应
+     * @param pattern             时间类型数据的格式,默认UTC格式
+     * @param isExportNullField   空字段是否导出（true：导出，false:不导出）
      */
     public static void exportDynamicExcel(String fileName, List<String> sheetNames, String titleName,
                                           List<String> headers, List<List<Map<String, Object>>> dataLists, HttpServletResponse response,
@@ -269,9 +252,9 @@ public class ExportExcelUtil<T> {
             while (it.hasNext()) {
                 index++;
                 row = sheet.createRow(index);
-                Map<Integer,String> entity = (Map<Integer, String>) it.next();
+                Map<Integer, String> entity = (Map<Integer, String>) it.next();
                 Set<Integer> integers = entity.keySet();
-                for(Integer key:entity.keySet()){
+                for (Integer key : entity.keySet()) {
                     XSSFCell cell = row.createCell(key);
                     Object value = entity.get(key);
                     String textValue = null;
@@ -299,7 +282,7 @@ public class ExportExcelUtil<T> {
                             cell.setCellValue(textValue);
                         }
                     }
-                    System.out.println("key:"+key+" "+"Value:"+entity.get(key));
+                    System.out.println("key:" + key + " " + "Value:" + entity.get(key));
                 }
             }
         }
@@ -313,10 +296,8 @@ public class ExportExcelUtil<T> {
      * @param titleName
      * @param headers
      * @param dataLists
-     * @param pattern
-     *            时间格式
-     * @param isExportNullField
-     *            是否导出空字段
+     * @param pattern           时间格式
+     * @param isExportNullField 是否导出空字段
      * @return
      */
     private static XSSFWorkbook exportDynamicExcelImpl(List<String> sheetNames, String titleName, List<String> headers,
@@ -434,22 +415,14 @@ public class ExportExcelUtil<T> {
     /**
      * 导出Excel到HttpServletResponse流中
      *
-     * @param fileName
-     *            另存为文件名
-     * @param sheetName
-     *            工作簿中的一张工作表的名称
-     * @param titleName
-     *            表格的标题名称（无需创建，则传null）
-     * @param headers
-     *            表头列表
-     * @param dataList
-     *            要导出的数据源
-     * @param response
-     *            Http响应
-     * @param pattern
-     *            时间类型数据的格式,默认UTC格式
-     * @param isExportNullField
-     *            空字段是否导出（true：导出，false:不导出）
+     * @param fileName          另存为文件名
+     * @param sheetName         工作簿中的一张工作表的名称
+     * @param titleName         表格的标题名称（无需创建，则传null）
+     * @param headers           表头列表
+     * @param dataList          要导出的数据源
+     * @param response          Http响应
+     * @param pattern           时间类型数据的格式,默认UTC格式
+     * @param isExportNullField 空字段是否导出（true：导出，false:不导出）
      */
     @Deprecated
     public static void exportOneSheetExcel(String fileName, String sheetName, String titleName, List<String> headers,
@@ -561,8 +534,8 @@ public class ExportExcelUtil<T> {
                     @SuppressWarnings("rawtypes")
                     Class entityClass = entity.getClass();
                     @SuppressWarnings("unchecked")
-                    Method getMethod = entityClass.getMethod(getMethodName, new Class[] {});
-                    Object value = getMethod.invoke(entity, new Object[] {});
+                    Method getMethod = entityClass.getMethod(getMethodName, new Class[]{});
+                    Object value = getMethod.invoke(entity, new Object[]{});
                     String textValue = null;
                     // 如果是时间类型,格式化
                     if (value instanceof Date) {

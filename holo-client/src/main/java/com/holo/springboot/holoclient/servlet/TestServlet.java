@@ -14,9 +14,9 @@ import java.io.PrintWriter;
 /**
  * 这是以servlet 3.0的方式建立一个servlet
  * 注意：
- *      需要在主启动类（HoloClientApplication）上加上@ServletComponentScan注解，这个才能生效。
+ * 需要在主启动类（HoloClientApplication）上加上@ServletComponentScan注解，这个才能生效。
  */
-@WebServlet(name = "TestServlet",urlPatterns = "/TestServlet_servlet")
+@WebServlet(name = "TestServlet", urlPatterns = "/TestServlet_servlet")
 public class TestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

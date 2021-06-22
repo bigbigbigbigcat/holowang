@@ -27,14 +27,14 @@ import java.util.Map;
  * 公共程序异常信息处理类
  * springboot中，MVC错误处理相关的配置内容，在ErrorMvcAutoConfiguration这个自动配置类中
  * 如果是浏览器请求会交给errorHtml方法处理
- *      对应的错误代码404、400、500等，会去templates或static目录中解析对应的页面。
+ * 对应的错误代码404、400、500等，会去templates或static目录中解析对应的页面。
  * 那除了text/html的其他请求都会交给error方法处理（ajax）
  */
 @Controller
 @RequestMapping("/error")
 public class ErrorController extends AbstractErrorController {
 
-    Logger logger= LoggerFactory.getLogger(ErrorController.class);
+    Logger logger = LoggerFactory.getLogger(ErrorController.class);
 
     public ErrorController(ErrorAttributes errorAttributes, List<ErrorViewResolver> errorViewResolvers) {
         super(errorAttributes, errorViewResolvers);
@@ -47,6 +47,7 @@ public class ErrorController extends AbstractErrorController {
 
     /**
      * 处理浏览器请求的异常
+     *
      * @param request
      * @param response
      * @return
@@ -63,6 +64,7 @@ public class ErrorController extends AbstractErrorController {
 
     /**
      * 处理非浏览器请求的错误（ajax）
+     *
      * @param request
      * @return
      */
@@ -71,21 +73,22 @@ public class ErrorController extends AbstractErrorController {
     public Result error(HttpServletRequest request) {
         HttpStatus status = getStatus(request);
         if (status == HttpStatus.NO_CONTENT) {
-            return new Result(HttpStatus.NO_CONTENT.value(),HttpStatus.NO_CONTENT.getReasonPhrase());
+            return new Result(HttpStatus.NO_CONTENT.value(), HttpStatus.NO_CONTENT.getReasonPhrase());
         }
         Map<String, Object> body = getErrorAttributes(request, getErrorAttributeOptions());
         String code = body.get("status").toString();
         String message = body.get("message").toString();
-        if (!ObjectUtils.isEmpty(body.get("trace"))){
+        if (!ObjectUtils.isEmpty(body.get("trace"))) {
             logger.error(body.get("trace").toString());
         }
-        return new Result(Integer.parseInt(code),message);
+        return new Result(Integer.parseInt(code), message);
 
 //        return new Result(status.value(),status.getReasonPhrase());
     }
 
     /**
      * 异常信息的选项
+     *
      * @return
      */
     protected ErrorAttributeOptions getErrorAttributeOptions() {

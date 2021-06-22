@@ -32,8 +32,8 @@ public class ExcelUtils {
      * 输出数据到自定义模版的Excel输出流
      *
      * @param excelTemplate 自定义模版文件
-     * @param data 数据
-     * @param outputStream Excel输出流
+     * @param data          数据
+     * @param outputStream  Excel输出流
      * @throws IOException 错误时抛出异常，由调用者处理
      */
     public static void writeDataToTemplateOutputStream(File excelTemplate, List<List<Object>> data, OutputStream outputStream) throws IOException {
@@ -56,13 +56,9 @@ public class ExcelUtils {
 
             if (excelFile.getName().endsWith(XLS)) {
                 return new HSSFWorkbook(inputStream);
-            }
-
-            else if (excelFile.getName().endsWith(XLSX)) {
+            } else if (excelFile.getName().endsWith(XLSX)) {
                 return new XSSFWorkbook(inputStream);
-            }
-
-            else {
+            } else {
                 throw new IOException("文件类型错误");
             }
         }
@@ -74,7 +70,7 @@ public class ExcelUtils {
      * @param book Workbook对象
      * @param file Excel文件
      * @throws FileNotFoundException 找不到文件异常，文件已创建，实际不存在该异常
-     * @throws IOException 输入输出异常
+     * @throws IOException           输入输出异常
      */
     public static void writeWorkbookToFile(Workbook book, File file) throws FileNotFoundException, IOException {
         if (!file.exists()) {
@@ -93,7 +89,7 @@ public class ExcelUtils {
     /**
      * 把Workbook对象输出到Excel输出流
      *
-     * @param book Workbook对象
+     * @param book         Workbook对象
      * @param outputStream Excel输出流
      * @throws IOException 错误时抛出异常，由调用者处理
      */
@@ -105,9 +101,9 @@ public class ExcelUtils {
      * 输出数据到Workbook对象中指定页码
      *
      * @param title 标题，写在第一行，可传null
-     * @param data 数据
-     * @param book Workbook对象
-     * @param page 输出数据到Workbook指定页码的页面数
+     * @param data  数据
+     * @param book  Workbook对象
+     * @param page  输出数据到Workbook指定页码的页面数
      */
     public static void writeDataToWorkbook(List<String> title, List<List<Object>> data, Workbook book, int page) {
         Sheet sheet = book.getSheetAt(page);
@@ -180,13 +176,9 @@ public class ExcelUtils {
 
             if (file.getName().endsWith(XLS)) {
                 return readXlsFirstSheet(inputStream);
-            }
-
-            else if (file.getName().endsWith(XLSX)) {
+            } else if (file.getName().endsWith(XLSX)) {
                 return readXlsxFirstSheet(inputStream);
-            }
-
-            else {
+            } else {
                 throw new IOException("文件类型错误");
             }
         }
@@ -300,7 +292,7 @@ public class ExcelUtils {
     /**
      * 设置单元格值
      *
-     * @param cell 单元格
+     * @param cell  单元格
      * @param value 值
      */
     private static void setValue(Cell cell, Object value) {
@@ -310,21 +302,13 @@ public class ExcelUtils {
 
         if (null == value) {
             cell.setCellValue((String) null);
-        }
-
-        else if (value instanceof Boolean) {
+        } else if (value instanceof Boolean) {
             cell.setCellValue((Boolean) value);
-        }
-
-        else if (value instanceof Date) {
+        } else if (value instanceof Date) {
             cell.setCellValue(FORMAT.format((Date) value));
-        }
-
-        else if (value instanceof Double) {
+        } else if (value instanceof Double) {
             cell.setCellValue((Double) value);
-        }
-
-        else {
+        } else {
             cell.setCellValue(value.toString());
         }
 

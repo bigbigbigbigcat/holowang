@@ -13,4 +13,5 @@ public class Specs {
     private String level3Value;
     private String levelType;
     private String price;
+
 }
