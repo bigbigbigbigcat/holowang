@@ -21,21 +21,21 @@ public class RestController {
 
 
     @RequestMapping("/qryOrderInfo/{name}")
-    public Result qryOrderInfo(@PathVariable String name){
+    public Result qryOrderInfo(@PathVariable String name) {
         Result forObject = restTemplate.getForObject("http://127.0.0.1:8088/SpringBoot/qryOrderInfo/{name}", Result.class, name);
 
-       return forObject;
+        return forObject;
     }
 
     @RequestMapping("/addOrderInfo/{orderInfo}")
-    public void addOrderInfo(@PathVariable OrderInfo orderInfo){
+    public void addOrderInfo(@PathVariable OrderInfo orderInfo) {
         ResponseEntity<Result> resultResponseEntity = restTemplate.postForEntity("http://127.0.0.1:8088/SpringBoot/addOrderInfo", orderInfo, Result.class);
         System.out.println(resultResponseEntity.toString());
     }
 
     @RequestMapping("/addOrderInfoForJson")
     @ResponseBody
-    public void addOrderInfoForJson (OrderInfo orderInfo){
+    public void addOrderInfoForJson(OrderInfo orderInfo) {
         ResponseEntity<Result> resultResponseEntity = restTemplate.postForEntity("http://127.0.0.1:8088/SpringBoot/addOrderInfoForJson", orderInfo, Result.class);
         System.out.println(resultResponseEntity.toString());
     }
